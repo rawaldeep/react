@@ -10,7 +10,7 @@ class StartButton extends Component {
       button = <button onClick={this.props.onReset}>reset</button>;
     }
     return (
-        <div style={{ marginLeft: 130 }} >
+        <div className='startbutton'>
         {button}
       </div>
     );

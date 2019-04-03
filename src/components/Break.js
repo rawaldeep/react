@@ -5,7 +5,8 @@ class Break extends Component {
     let running = this.props.checkRunning;
     if(!running){
       return (
-    <div style={{marginBottom: 100}}>
+    <div className='breakbutton'>
+    <h3>Break Time</h3>
     <button onClick={this.props.addTimeBreak}>+</button>
     <span>{this.props.BreakProp}</span>
     <button onClick={this.props.subtractTimeBreak}>-</button>

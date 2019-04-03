@@ -11,7 +11,7 @@ class PauseButton extends Component {
     //   button = <button onClick={this.props.onReset}>reset</button>;
     // }
     return (
-        <div style={{ marginBottom: 100 }} >
+        <div className='pausebutton' >
         {button}
       </div>
     );

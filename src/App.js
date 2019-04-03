@@ -118,10 +118,14 @@ class App extends Component {
     return (
       <div className="App">
         <Timer minutes={this.state.minutes} seconds={this.state.seconds}/>
+        <div className="controls">
         <TimerInput checkRunning={this.state.isRunning} minutesProp={this.state.minutes} subtractTime={()=>this.subMoreTime()} addTime={() => this.addMoreTime()}/>
         <Break checkRunning={this.state.isRunning} BreakProp={this.state.break} subtractTimeBreak={()=>this.subMoreTimeBreak()} addTimeBreak={() => this.addMoreTimeBreak()}/>
+        </div>
+        <div className="buttons">
         <PauseButton checkRunning={this.state.isRunning} onPause={()=> this.pause()}/>
        <StartButton checkRunning={this.state.isRunning} onClick={()=> this.startCountDown()} onReset={()=> this.stopCountDown()}/>
+       </div>
       </div>
     );
   }
