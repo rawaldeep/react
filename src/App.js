@@ -5,6 +5,7 @@ import Break from './components/Break';
 import StartButton from './components/StartButton';
 import PauseButton from './components/PauseButton';
 import './App.css';
+import soundfile from './assets/alert.mp3';
 
 class App extends Component {
   constructor(props){
@@ -14,7 +15,7 @@ class App extends Component {
       minutes: '25',
       break: '5',
       isRunning: false,
-      nextTimer: null
+      nextTimer: null,
     }
     // this.secondsRemaining;
     // this.intervalHandle;
@@ -54,6 +55,8 @@ class App extends Component {
   }
   }
   tick = () => {
+    // this.sound = new Audio('./assets/alert.mp3')
+  
     let min = Math.floor(this.secondsRemaining/60);
     let sec = this.secondsRemaining - (min * 60);
     this.setState({
@@ -71,11 +74,19 @@ class App extends Component {
       })
     }
     if(min <= 0 & sec <= 0){
+      this.sound = document.createElement('audio');
+      this.sound.setAttribute("id", "alert");
+      this.sound.src = soundfile;
+      this.sound.setAttribute("preload", "auto");
+      this.sound.setAttribute("controls", "none");
+      this.sound.style.display = "none";
+      document.body.appendChild(this.sound);
+      this.sound.play();
       this.sessions();
      clearInterval(this.intervalHandle);
     }
     if(this.state.isRunning){
-    this.secondsRemaining--
+    this.secondsRemaining--;
   }
   }
   startCountDown = () => {
@@ -103,6 +114,12 @@ class App extends Component {
   }
   sessions = () => {
     if(this.state.isRunning){
+      setTimeout(()=>{
+        this.sound.pause()
+        let elem = document.getElementById('alert');
+    elem.parentNode.removeChild(elem);
+      }, 5000);
+    
     let breaktime = parseInt(this.state.break) * 60 * 1000 ;
     this.breakSession = setInterval(()=>{this.setState({
       minutes: this.state.nextTimer,
