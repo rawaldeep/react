@@ -28,6 +28,9 @@ class App extends Component {
       minutes: prevState.minutes,
       isRunning: false
     }))
+    if(this.sound.play){
+    this.sound.pause()
+    }
     clearInterval(this.intervalHandle)
   }
   addMoreTimeBreak = () => {
@@ -77,6 +80,7 @@ class App extends Component {
       this.sound = document.createElement('audio');
       this.sound.setAttribute("id", "alert");
       this.sound.src = soundfile;
+      this.sound.setAttribute("volume", 0.4);
       this.sound.setAttribute("preload", "auto");
       this.sound.setAttribute("controls", "none");
       this.sound.style.display = "none";
